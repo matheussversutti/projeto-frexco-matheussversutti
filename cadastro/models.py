@@ -1,7 +1,11 @@
 from django.db import models
 import string
 import random
+
 # Create your models here.
+
+
+
 class Usuario(models.Model):
         login = models.CharField(max_length=15)
         senha  = models.CharField(max_length=15, blank=True)
@@ -14,8 +18,8 @@ class Usuario(models.Model):
         def __str__(self):
                 return self.login
         
-        if senha == '':
-            abc = string.ascii_letters
-            pontuacao = string.punctuation
-            senha = abc + pontuacao
-            ''.join(random.SystemRandom().choices(senha, k=15))
+        def save(self, *args, **kwargs):
+                
+                if self.senha == '':
+                        self.senha == "1234"
+                super(Usuario, self).save(*args, **kwargs)
