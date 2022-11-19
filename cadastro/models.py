@@ -19,7 +19,6 @@ class Usuario(models.Model):
                 return self.login
         
         def save(self, *args, **kwargs):
-         if not self.senha: 
-                self.senha = ''.join(sr().choices(s.ascii_letters + s.punctuation, k=15))
-                
+                if not self.senha: 
+                        self.senha = ''.join(sr().choices(s.ascii_letters + s.punctuation, k=15))
                 return super().save(*args, **kwargs)
