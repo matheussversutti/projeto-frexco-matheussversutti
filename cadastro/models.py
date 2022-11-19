@@ -1,6 +1,6 @@
 from django.db import models
-import string
-import random
+import string as s; from random import SystemRandom as sr;
+
 
 # Create your models here.
 
@@ -19,7 +19,7 @@ class Usuario(models.Model):
                 return self.login
         
         def save(self, *args, **kwargs):
+         if not self.senha: 
+                self.senha = ''.join(sr().choices(s.ascii_letters + s.punctuation, k=15))
                 
-                if self.senha == '':
-                        self.senha == "1234"
-                super(Usuario, self).save(*args, **kwargs)
+                return super().save(*args, **kwargs)
